@@ -5,13 +5,13 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Blazor.Leaflet.OpenStreetMap</PackageId>
-    <Version>0.1.4</Version>
-    <Authors>Bernard Darnton, Stoyan Bonchev</Authors>
+    <Version>0.1.5</Version>
+    <Authors>Bernard Darnton</Authors>
     <Company>Bernard Darnton</Company>
     <Product>Leaflet.js Interop Library for Blazor</Product>
     <Description>Leaflet.js Interop Library for Blazor - .NET 5</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Copyright>2020 Bernard Darnton</Copyright>
+    <Copyright>Darnton under MIT License</Copyright>
     <AssemblyVersion>0.0.1.4</AssemblyVersion>
     <FileVersion>0.0.1.4</FileVersion> 
     <RootNamespace>Darnton.Blazor.Leaflet</RootNamespace>
