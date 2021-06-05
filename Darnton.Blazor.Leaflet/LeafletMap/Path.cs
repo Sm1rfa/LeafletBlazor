@@ -1,4 +1,4 @@
-﻿namespace Darnton.Blazor.Leaflet.LeafletMap
+﻿namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
 {
     /// <summary>
     /// A vector overlay <see cref="Layer"/>.

@@ -1,4 +1,4 @@
-﻿namespace Darnton.Blazor.Leaflet.LeafletMap
+﻿namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
 {
     /// <summary>
     /// A <see cref="Layer"/> that the user can interact with.

@@ -1,7 +1,7 @@
 ﻿using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace Darnton.Blazor.Leaflet.LeafletMap
+namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
 {
     /// <summary>
     /// A rectangular area in pixel coordinates.
@@ -33,12 +33,12 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         {
             if (Min.JSBinder is null)
             {
-                await Min.BindJsObjectReference(this.JSBinder);
+                await Min.BindJsObjectReference(JSBinder);
             }
             Min.GuardAgainstNullBinding("Cannot create Bounds object. No JavaScript binding has been set up for the Min property.");
             if (Max.JSBinder is null)
             {
-                await Max.BindJsObjectReference(this.JSBinder);
+                await Max.BindJsObjectReference(JSBinder);
             }
             Max.GuardAgainstNullBinding("Cannot create Bounds object. No JavaScript binding has been set up for the Max property.");
             return await JSBinder.JSRuntime.InvokeAsync<IJSObjectReference>("L.bounds", Min.JSObjectReference, Max.JSObjectReference);

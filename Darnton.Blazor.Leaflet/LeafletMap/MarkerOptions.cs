@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Darnton.Blazor.Leaflet.LeafletMap
+namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
 {
     /// <summary>
     /// The options used when creating a <see cref="Marker"/>.

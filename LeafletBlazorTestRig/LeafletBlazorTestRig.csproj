@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Darnton.Blazor.Leaflet\Darnton.Blazor.Leaflet.csproj" />
+    <ProjectReference Include="..\Darnton.Blazor.Leaflet\Blazor.Leaflet.OpenStreetMap.csproj" />
   </ItemGroup>
 
 </Project>

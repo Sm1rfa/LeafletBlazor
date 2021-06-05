@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Darnton.Blazor.Leaflet
+namespace Blazor.Leaflet.OpenStreetMap
 {
     /// <summary>
     /// Abstract base class for types that represent JavaScript objects.

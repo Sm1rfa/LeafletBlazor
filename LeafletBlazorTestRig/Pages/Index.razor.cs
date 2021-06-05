@@ -1,4 +1,4 @@
-﻿using Darnton.Blazor.Leaflet.LeafletMap;
+﻿using Blazor.Leaflet.OpenStreetMap.LeafletMap;
 using LeafletBlazorTestRig.Models;
 using Microsoft.AspNetCore.Components;
 using System;

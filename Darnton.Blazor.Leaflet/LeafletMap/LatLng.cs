@@ -1,7 +1,7 @@
 ﻿using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace Darnton.Blazor.Leaflet.LeafletMap
+namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
 {
     /// <summary>
     /// A point with a latitude and longitude.

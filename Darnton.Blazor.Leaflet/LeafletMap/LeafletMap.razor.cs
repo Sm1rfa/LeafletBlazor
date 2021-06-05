@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 using System;
 using System.Threading.Tasks;
 
-namespace Darnton.Blazor.Leaflet.LeafletMap
+namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
 {
     /// <summary>
     /// The LeafletMap Razor component used to render a <see cref="Map"/> and <see cref="TileLayer"/>.

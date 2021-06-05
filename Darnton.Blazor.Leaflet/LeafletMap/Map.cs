@@ -1,8 +1,7 @@
 ﻿using Microsoft.JSInterop;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Darnton.Blazor.Leaflet.LeafletMap
+namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
 {
     /// <summary>
     /// A leaflet Map object, used to create a Map on a page.
@@ -95,14 +94,14 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         {
             if (bounds.JSBinder is null)
             {
-                await bounds.BindJsObjectReference(this.JSBinder);
+                await bounds.BindJsObjectReference(JSBinder);
             }
             bounds.GuardAgainstNullBinding("Cannot get bounds zoom. No JavaScript binding has been set up for the bounds parameter.");
             if (padding is not null)
             {
                 if (padding.JSBinder is null)
                 {
-                    await padding.BindJsObjectReference(this.JSBinder);
+                    await padding.BindJsObjectReference(JSBinder);
                 }
                 padding.GuardAgainstNullBinding("Cannot get bounds zoom. No JavaScript binding has been set up for the padding parameter.");
             }
@@ -158,11 +157,11 @@ namespace Darnton.Blazor.Leaflet.LeafletMap
         {
             if (center.JSBinder is null)
             {
-                await center.BindJsObjectReference(this.JSBinder);
+                await center.BindJsObjectReference(JSBinder);
             }
             center.GuardAgainstNullBinding("Cannot set map view. No JavaScript binding has been set up for the center argument.");
             var module = await JSBinder.GetLeafletMapModule();
-            await module.InvokeVoidAsync("LeafletMap.Map.setView", this.JSObjectReference, center.JSObjectReference, zoom);
+            await module.InvokeVoidAsync("LeafletMap.Map.setView", JSObjectReference, center.JSObjectReference, zoom);
             return this;
         }
 

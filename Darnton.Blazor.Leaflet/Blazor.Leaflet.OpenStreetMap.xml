@@ -1,0 +1,441 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Blazor.Leaflet.OpenStreetMap</name>
+    </assembly>
+    <members>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.InteropObject">
+            <summary>
+            Abstract base class for types that represent JavaScript objects.
+            </summary>
+        </member>
+        <member name="F:Blazor.Leaflet.OpenStreetMap.InteropObject.JSBinder">
+            <summary>
+            The JavaScript binder used to talk to the interop layer.
+            </summary>
+        </member>
+        <member name="F:Blazor.Leaflet.OpenStreetMap.InteropObject.JSObjectReference">
+            <summary>
+            The JavaScript runtime object reference.
+            </summary>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.InteropObject.BindJsObjectReference(Blazor.Leaflet.OpenStreetMap.LeafletMapJSBinder)">
+            <summary>
+            Creates the JavaScript object, stores a reference to it and the
+            JavaScript runtime object used to create it.
+            </summary>
+            <param name="jsBinder">The JavaScript binder used to talk to the interop layer.</param>
+            <returns>A task that represents the async create operation.</returns>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.InteropObject.CreateJsObjectRef">
+            <summary>
+            Creates the JavaScript object
+            </summary>
+            <returns>The reference to the new JavaScript object.</returns>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.InteropObject.DisposeAsync">
+            <inheritdoc/>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.InteropObject.GuardAgainstNullBinding(System.String)">
+            <summary>
+            Throws an <see cref="T:System.InvalidOperationException"/> if the JavaScript binding has not been
+            set up for this object.
+            </summary>
+            <param name="nullBindingMessage">The error message to be used when an exception is thrown.</param>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMapJSBinder.DisposeAsync">
+            <inheritdoc/>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Bounds">
+            <summary>
+            A rectangular area in pixel coordinates.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.Bounds.Min">
+            <summary>
+            The top left corner of the bounds.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.Bounds.Max">
+            <summary>
+            The bottom right corner of the bounds.
+            </summary>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Bounds.#ctor(Blazor.Leaflet.OpenStreetMap.LeafletMap.Point,Blazor.Leaflet.OpenStreetMap.LeafletMap.Point)">
+            <summary>
+            Constructs a Bounds instance.
+            </summary>
+            <param name="min">The top left corner of the bounds.</param>
+            <param name="max">The bottom right corner of the bounds.</param>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Bounds.CreateJsObjectRef">
+            <inheritdoc/>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Bounds.ToString">
+            <inheritsdoc/>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.InteractiveLayer">
+            <summary>
+            A <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Layer"/> that the user can interact with.
+            <see href="https://leafletjs.com/reference-1.7.1.html#interactive-layer"/>
+            </summary>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng">
+            <summary>
+            A point with a latitude and longitude.
+            <see href="https://leafletjs.com/reference-1.7.1.html#latlng"/>
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng.Lat">
+            <summary>
+            Latitude in degrees.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng.Lng">
+            <summary>
+            Longitude in degrees.
+            </summary>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng.#ctor(System.Double,System.Double)">
+            <summary>
+            Constructs a LatLng
+            </summary>
+            <param name="lat">Latitude in degrees.</param>
+            <param name="lng">Longitude in degrees.</param>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng.CreateJsObjectRef">
+            <inheritdoc/>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLngBounds">
+            <summary>
+            A rectangular geographical area on a map.
+            <see href="https://leafletjs.com/reference-1.7.1.html#latlngbounds"/>
+            </summary>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLngBounds.#ctor(Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng,Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng)">
+            <summary>
+            Constructs a LatLngBounds instance.
+            </summary>
+            <param name="corner1">The first corner defining the bounds.</param>
+            <param name="corner2">The second corner defining the bounds, diagonally opposite the first.</param>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLngBounds.CreateJsObjectRef">
+            <inheritdoc/>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Layer">
+            <summary>
+            A layer that can be added to a <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map"/>.
+            </summary>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Layer.AddTo(Blazor.Leaflet.OpenStreetMap.LeafletMap.Map)">
+            <summary>
+            Adds the layer to a <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map"/>.
+            </summary>
+            <param name="map">The <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map"/> to add the Layer to.</param>
+            <returns>The Layer.</returns>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Layer.Remove">
+            <summary>
+            Removes the Layer from the <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map"/> it's currently active on.
+            </summary>
+            <returns>The Layer.</returns>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.LayerOptions">
+            <summary>
+            The options used when creating a <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Layer"/>.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.LayerOptions.Attribution">
+            <summary>
+            The string shown in the attribution control.
+            May be required to show, e.g., tile provider's copyright message.
+            </summary>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.LeafletMapBase">
+            <summary>
+            The LeafletMap Razor component used to render a <see cref="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.LeafletMapBase.Map"/> and <see cref="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.LeafletMapBase.TileLayer"/>.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.LeafletMapBase.JSRuntime">
+            <summary>
+            The JavaScript runtime instance used to create the <see cref="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.LeafletMapBase.Map"/>.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.LeafletMapBase.Map">
+            <summary>
+            The Leaflet <see cref="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.LeafletMapBase.Map"/> to be rendered by the component.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.LeafletMapBase.TileLayer">
+            <summary>
+            The <see cref="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.LeafletMapBase.TileLayer"/> to be added when the <see cref="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.LeafletMapBase.Map"/> is rendered.
+            </summary>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.LeafletMapBase.OnAfterRenderAsync(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map">
+            <summary>
+            A leaflet Map object, used to create a Map on a page.
+            <see href="https://leafletjs.com/reference-1.7.1.html#map-methods-for-getting-map-state"/>
+            and <see href="https://leafletjs.com/reference-1.7.1.html#map-methods-for-modifying-map-state"/>.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.ElementId">
+            <summary>
+            The ID of the HTML element the map will be rendered in.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.Options">
+            <summary>
+            The <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.MapOptions"/> used to create the Map.
+            </summary>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.#ctor(System.String,Blazor.Leaflet.OpenStreetMap.LeafletMap.MapOptions)">
+            <summary>
+            Constructs a Map.
+            </summary>
+            <param name="elementId">The ID of the HTML element the map will be rendered in.</param>
+            <param name="options">The <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.MapOptions"/> used to create the Map.</param>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.CreateJsObjectRef">
+            <inheritdoc/>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.GetCenter">
+            <summary>
+            Gets the point at the centre of the map view.
+            </summary>
+            <returns>A <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng"/> representing the geographical centre of the map.</returns>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.GetBounds">
+            <summary>
+            Gets the geographical bounds of the map view.
+            </summary>
+            <returns>A <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLngBounds"/> object representing the geographical bounds of the map.</returns>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.GetZoom">
+            <summary>
+            Gets the zoom level of the map view.
+            </summary>
+            <returns>The zoom level.</returns>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.GetMinZoom">
+            <summary>
+            Gets the minimum zoom level of the map view.
+            </summary>
+            <returns>The minimum zoom level.</returns>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.GetMaxZoom">
+            <summary>
+            Gets the maximum zoom level of the map view.
+            </summary>
+            <returns>The maximum zoom level.</returns>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.GetBoundsZoom(Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLngBounds,System.Boolean,Blazor.Leaflet.OpenStreetMap.LeafletMap.Point)">
+            <summary>
+            Gets the maximum zoom level on which the bounds fit the map view.
+            </summary>
+            <param name="bounds">The <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLngBounds"/> to fit to the map.</param>
+            <param name="inside">A flag indicating the fit direction. If true, method returns minimum zoom level
+            on which the map fits into the bounds.</param>
+            <param name="padding">The padding in pixels.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.GetSize">
+            <summary>
+            Gets the size of the map container in pixels.
+            </summary>
+            <returns>A <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Point"/> representing the size of the map container in pixels.</returns>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.GetPixelBounds">
+            <summary>
+            Gets the bounds of the map view in projected pixel coordinates.
+            </summary>
+            <returns>A <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Bounds"/> representing the size of the map container in pixels.</returns>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.GetPixelOrigin">
+            <summary>
+            Gets the projected pixel coordinates of the top left point of the map layer.
+            </summary>
+            <returns>A <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Point"/> representing top left point of the map in pixels.</returns>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.GetPixelWorldBounds(System.Nullable{System.Int32})">
+            <summary>
+            Gets the world's bounds in pixel coordinates.
+            </summary>
+            <param name="zoom">The zoom level used to calculate the bounds. Current map zoom level is used if null or omitted.</param>
+            <returns>A <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Bounds"/> representing the size of the map container in pixels.</returns>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map.SetView(Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng,System.Int32)">
+            <summary>
+            Sets the view of the map with the given centre and zoom.
+            </summary>
+            <param name="center">A <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng"/> representing the geogrpahical centre of the map.</param>
+            <param name="zoom">The zoom level of the map.</param>
+            <returns>The Map.</returns>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.MapOptions">
+            <summary>
+            The options used when creating a <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map"/>.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.MapOptions.Center">
+            <summary>
+            The initial centre point of the <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map"/>.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.MapOptions.Zoom">
+            <summary>
+            The initial zoom level of the <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map"/>.
+            </summary>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Marker">
+            <summary>
+            A clickable, draggable icon that can be added to a <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Map"/>
+            <see href="https://leafletjs.com/reference-1.7.1.html#marker"/>
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.Marker.LatLng">
+            <summary>
+            The initial position of the marker.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.Marker.Options">
+            <summary>
+            The <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.MarkerOptions"/> used to create the marker.
+            </summary>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Marker.#ctor(Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng,Blazor.Leaflet.OpenStreetMap.LeafletMap.MarkerOptions)">
+            <summary>
+            Constructs a marker
+            </summary>
+            <param name="latlng">The initial position of the marker.</param>
+            <param name="options">The <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.MarkerOptions"/> used to create the marker.</param>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Marker.CreateJsObjectRef">
+            <inheritdoc/>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.MarkerOptions">
+            <summary>
+            The options used when creating a <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Marker"/>.
+            </summary>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Path">
+            <summary>
+            A vector overlay <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Layer"/>.
+            <see href="https://leafletjs.com/reference-1.7.1.html#path"/>
+            </summary>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Point">
+            <summary>
+            A point with x and y coordinates in pixels.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.Point.X">
+            <summary>
+            The x coordinate in pixels.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.Point.Y">
+            <summary>
+            The y corrdinate in pixels.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.Point.Round">
+            <summary>
+            Flag indicating whether coordinate values should be rounded.
+            </summary>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Point.#ctor(System.Double,System.Double,System.Boolean)">
+            <summary>
+            Constructs a point
+            </summary>
+            <param name="x">The x coordinate in pixels.</param>
+            <param name="y">The y corrdinate in pixels.</param>
+            <param name="round">Flag indicating whether coordinate values should be rounded.</param>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Point.CreateJsObjectRef">
+            <inheritdoc/>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Point.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Polyline">
+            <summary>
+            A vector line overlay <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Layer"/>.
+            <see href="https://leafletjs.com/reference-1.7.1.html#polyline"/>
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.Polyline.LatLngs">
+            <summary>
+            An array of points defining the shape.
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.Polyline.Options">
+            <summary>
+            The <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.PolylineOptions"/> used to define the Polyline.
+            </summary>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Polyline.#ctor(System.Collections.Generic.IEnumerable{Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng},Blazor.Leaflet.OpenStreetMap.LeafletMap.PolylineOptions)">
+            <summary>
+            Constructs a Polyline.
+            </summary>
+            <param name="latLngs">An array of points defining the shape.</param>
+            <param name="options">The <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.PolylineOptions"/> used to define the polyline.</param>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Polyline.CreateJsObjectRef">
+            <inheritdoc/>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.Polyline.AddLatLng(Blazor.Leaflet.OpenStreetMap.LeafletMap.LatLng)">
+            <summary>
+            Adds a point to the Polyline
+            </summary>
+            <param name="latLng">The point to add to the Polyline.</param>
+            <returns>The Polyline.</returns>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.PolylineOptions">
+            <summary>
+            The options used when creating a <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Polyline"/>.
+            </summary>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.TileLayer">
+            <summary>
+            A raster <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.Layer"/> used to display tiled images.
+            <see href="https://leafletjs.com/reference-1.7.1.html#tilelayer"/>
+            </summary>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.TileLayer.UrlTemplate">
+            <summary>
+            A URL template string with formatting options for subdomain, zoom level, coordinates, and resolution.
+            </summary>
+            <example>
+            <code>
+            http://{s}.somedomain.com/blabla/{z}/{x}/{y}{r}.png
+            </code>
+            </example>
+        </member>
+        <member name="P:Blazor.Leaflet.OpenStreetMap.LeafletMap.TileLayer.Options">
+            <summary>
+            The <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.TileLayerOptions"/> used to create the TileLayer.
+            </summary>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.TileLayer.#ctor(System.String,Blazor.Leaflet.OpenStreetMap.LeafletMap.TileLayerOptions)">
+            <summary>
+            Constructs a TileLayer
+            </summary>
+            <param name="urlTemplate">A URL template string with formatting options for subdomain, zoom level, coordinates, and resolution.</param>
+            <param name="options">The <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.TileLayerOptions"/> used to create the TileLayer.</param>
+        </member>
+        <member name="M:Blazor.Leaflet.OpenStreetMap.LeafletMap.TileLayer.CreateJsObjectRef">
+            <inheritdoc/>
+        </member>
+        <member name="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.TileLayerOptions">
+            <summary>
+            The options used to create a <see cref="T:Blazor.Leaflet.OpenStreetMap.LeafletMap.TileLayer"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

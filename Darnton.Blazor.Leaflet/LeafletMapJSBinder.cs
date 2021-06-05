@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Darnton.Blazor.Leaflet
+namespace Blazor.Leaflet.OpenStreetMap
 {
     internal class LeafletMapJSBinder : IAsyncDisposable
     {
@@ -16,7 +16,7 @@ namespace Darnton.Blazor.Leaflet
 
         internal async Task<IJSObjectReference> GetLeafletMapModule()
         {
-            return await (_leafletMapModule ??= JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Darnton.Blazor.Leaflet/js/leaflet-map.js").AsTask());
+            return await (_leafletMapModule ??= JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Blazor.Leaflet.OpenStreetMap/js/leaflet-map.js").AsTask());
         }
 
         /// <inheritdoc/>

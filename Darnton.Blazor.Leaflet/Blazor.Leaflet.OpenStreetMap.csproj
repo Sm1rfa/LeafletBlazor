@@ -5,7 +5,7 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Blazor.Leaflet.OpenStreetMap</PackageId>
-    <Version>0.1.5</Version>
+    <Version>0.2.0</Version>
     <Authors>Bernard Darnton</Authors>
     <Company>Bernard Darnton</Company>
     <Product>Leaflet.js Interop Library for Blazor</Product>
@@ -14,7 +14,7 @@
     <Copyright>Darnton under MIT License</Copyright>
     <AssemblyVersion>0.0.1.4</AssemblyVersion>
     <FileVersion>0.0.1.4</FileVersion> 
-    <RootNamespace>Darnton.Blazor.Leaflet</RootNamespace>
+    <RootNamespace>Blazor.Leaflet.OpenStreetMap</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

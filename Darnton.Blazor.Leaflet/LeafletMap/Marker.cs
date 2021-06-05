@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Darnton.Blazor.Leaflet.LeafletMap
+namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
 {
     /// <summary>
     /// A clickable, draggable icon that can be added to a <see cref="Map"/>

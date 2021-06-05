@@ -1,4 +1,4 @@
-﻿namespace Darnton.Blazor.Leaflet.LeafletMap
+﻿namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
 {
     /// <summary>
     /// The options used to create a <see cref="TileLayer"/>.
