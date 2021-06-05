@@ -1,0 +1,122 @@
+﻿@page "/"
+@inherits IndexBase
+
+<h1>Leaflet Map Test</h1>
+
+<div class="my-3">
+    <LeafletMap Map="PositionMap" TileLayer="OpenStreetMapsTileLayer" />
+</div>
+
+<div class="my-3">
+    <EditForm Model="MapStateViewModel" OnValidSubmit="SetMapState">
+        <h3>Map State</h3>
+        <button class="btn btn-primary my-3" @onclick="GetMapState">Get Map State</button>
+        <button type="submit" class="btn btn-primary my-3">Set Map State</button>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="centreLat">Centre Latitude</label>
+                    <InputNumber id="centreLat" @bind-Value="@MapStateViewModel.MapCentreLatitude" class="form-control" placeholder="Centre latitude" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="centreLng">Centre Longitude</label>
+                    <InputNumber id="centreLng" @bind-Value="@MapStateViewModel.MapCentreLongitude" class="form-control" placeholder="Centre longitude" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="zoom">Zoom</label>
+                    <InputNumber id="zoom" @bind-Value="@MapStateViewModel.Zoom" class="form-control" placeholder="Zoom level" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="containerSize">Size</label>
+                    <input type="text" readonly class="form-control-plaintext" id="containerSize" value="@MapStateViewModel.MapContainerSize" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="pixelBounds">Pixel Bounds</label>
+                    <input type="text" readonly class="form-control-plaintext" id="pixelBounds" value="@MapStateViewModel.MapViewPixelBounds" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="pixelOrigin">Pixel Origin</label>
+                    <input type="text" readonly class="form-control-plaintext" id="pixelOrigin" value="@MapStateViewModel.MapLayerPixelOrigin" />
+                </div>
+            </div>
+        </div>
+    </EditForm>
+
+    <EditForm Model="MarkerViewModel" OnValidSubmit="AddMarkerAtMapCenter">
+        <h3>Add Marker at Map Centre</h3>
+        <button type="submit" class="btn btn-primary my-3">Add Marker</button>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="keyboard">Marker has a Tab Stop</label>
+                    <InputCheckbox id="keyboard" @bind-Value="@MarkerViewModel.Keyboard" class="form-control" />
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="title">Title of Marker</label>
+                    <InputText id="title" @bind-Value="@MarkerViewModel.Title" class="form-control" placeholder="Title of marker" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="alt">Icon Alt Description</label>
+                    <InputText id="alt" @bind-Value="@MarkerViewModel.Alt" class="form-control" placeholder="Icon Alt description" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="zindexoffset">Z Index Offset</label>
+                    <InputNumber id="zindexoffset" @bind-Value="@MarkerViewModel.ZIndexOffset" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="opacity">Opacity</label>
+                    <input type="range" min="0.0" max="1.0" step="0.1" class="form-control-range" id="opacity" @bind-value="@MarkerViewModel.Opacity" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="riseonhover">Rise of Hover</label>
+                    <InputCheckbox id="riseonhover" @bind-Value="@MarkerViewModel.RiseOnHover" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="riseoffset">Rise Offset</label>
+                    <InputNumber id="riseoffset" @bind-Value="@MarkerViewModel.RiseOffset" class="form-control" />
+                </div>
+            </div>
+        </div>
+    </EditForm>
+
+</div>
