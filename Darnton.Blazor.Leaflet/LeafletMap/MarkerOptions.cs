@@ -8,6 +8,12 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
     public class MarkerOptions
     {
         /// <summary>
+        /// Icon instance to use for rendering the marker. See Icon documentation for details on how to customize the marker icon. If not specified, a common instance of L.Icon.Default is used.
+        /// </summary>
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public Icon Icon { get; set; }  
+
+        /// <summary>
         /// Whether the marker can be tabbed to with a keyboard and clicked by pressing enter.
         /// </summary>
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
