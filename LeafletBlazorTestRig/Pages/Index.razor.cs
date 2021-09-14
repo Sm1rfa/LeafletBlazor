@@ -62,8 +62,16 @@ namespace LeafletBlazorTestRig.Pages
         protected async void AddMarkerAtMapCenter()
         {
             var mapCentre = await PositionMap.GetCenter();
+            
+            var icon = new Icon(new IconOptions()
+            {
+                IconUrl = "logo.png",
+                IconSize = new Point(32, 32)
+            });
+
             var marker = new Marker(mapCentre, new MarkerOptions
             {
+                Icon = icon,
                 Keyboard = MarkerViewModel.Keyboard,
                 Title = MarkerViewModel.Title,
                 Alt = MarkerViewModel.Alt,
