@@ -26,6 +26,12 @@
             polyline.addLatLng(latlng, latlngs);
         }
 
-    }
+    },
+
+    Marker: {
+        setIcon(icon, marker) {
+            marker.setIcon(icon);
+        }
+    },
 
 }
