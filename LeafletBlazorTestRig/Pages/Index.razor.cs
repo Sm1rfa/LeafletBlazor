@@ -68,9 +68,10 @@ namespace LeafletBlazorTestRig.Pages
                 IconUrl = "logo.png",
                 IconSize = new Point(32, 32)
             });
+            await icon.AddTo(PositionMap);
 
             var marker = new Marker(mapCentre, new MarkerOptions
-            {
+            {                
                 Icon = icon,
                 Keyboard = MarkerViewModel.Keyboard,
                 Title = MarkerViewModel.Title,
@@ -80,7 +81,6 @@ namespace LeafletBlazorTestRig.Pages
                 RiseOnHover = MarkerViewModel.RiseOnHover,
                 RiseOffset = MarkerViewModel.RiseOffset,
             });
-
             await marker.AddTo(PositionMap);
         }
 

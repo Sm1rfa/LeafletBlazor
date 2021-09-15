@@ -2,13 +2,14 @@ using Microsoft.JSInterop;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System;
+using Microsoft.AspNetCore.Components;
 
 namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
 {    
  ///<summary>
     /// Represents an icon to provide when creating a marker.
     ///</summary>
-    public class Icon : InteropObject
+    public class Icon : InteractiveLayer
     {
         // /// <summary>
         // /// The ID of the HTML element the icon will be rendered in.
@@ -23,29 +24,19 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
 
         /// <summary>
         /// Constructs an Icon.
-        /// </summary>
-        //// <param name="elementId">The ID of the HTML element the Icon will be rendered in.</param>
+        /// </summary>        
         /// <param name="options">The <see cref="IconOptions"/> used to create the Icon.</param>
         public Icon(IconOptions options)
-        {
-            //ElementId = elementId;
-            Options = options;
+        {            
+            Options = options;            
+            
         }
 
         /// <inheritdoc/>
         protected override async Task<IJSObjectReference> CreateJsObjectRef()
-        {
-            Console.WriteLine("##################################");
-            var result = await JSBinder.JSRuntime.InvokeAsync<IJSObjectReference>("L.icon", Options);
-           
-            Console.WriteLine(result);
-            Console.WriteLine("************************************");
-            return result;
+        {            
+            return await JSBinder.JSRuntime.InvokeAsync<IJSObjectReference>("L.icon", Options);
         }        
 
-        // public object CreateIcon(object obj)
-        // {
-        //     return await JSBinder.JSRuntime.InvokeAsync<object>("L.createIcon", obj);
-        // }
     }
 }
