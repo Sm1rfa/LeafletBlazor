@@ -65,14 +65,12 @@ namespace LeafletBlazorTestRig.Pages
             
             var icon = new Icon(new IconOptions()
             {
-                IconUrl = "logo.png",
-                IconSize = new Point(32, 32)
+                IconUrl = "leaf-orange.png",
+                IconSize = new Point(64, 64)
             });
-            await icon.AddTo(PositionMap);
-
+              
             var marker = new Marker(mapCentre, new MarkerOptions
-            {                
-                Icon = icon,
+            {                                
                 Keyboard = MarkerViewModel.Keyboard,
                 Title = MarkerViewModel.Title,
                 Alt = MarkerViewModel.Alt,
@@ -81,7 +79,9 @@ namespace LeafletBlazorTestRig.Pages
                 RiseOnHover = MarkerViewModel.RiseOnHover,
                 RiseOffset = MarkerViewModel.RiseOffset,
             });
+
             await marker.AddTo(PositionMap);
+            await icon.AddTo(marker);
         }
 
         public async ValueTask DisposeAsync()
