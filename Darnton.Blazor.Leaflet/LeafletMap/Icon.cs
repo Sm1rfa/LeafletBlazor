@@ -18,6 +18,7 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         /// <summary>
         /// The <see cref="IconOptions"/> used to create the Icon.
         /// </summary>
+        [JsonPropertyName("options")]
         public IconOptions Options {get;}
 
         /// <summary>
@@ -34,7 +35,17 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         /// <inheritdoc/>
         protected override async Task<IJSObjectReference> CreateJsObjectRef()
         {
-            return await JSBinder.JSRuntime.InvokeAsync<IJSObjectReference>("L.icon", Options);
+            Console.WriteLine("##################################");
+            var result = await JSBinder.JSRuntime.InvokeAsync<IJSObjectReference>("L.icon", Options);
+           
+            Console.WriteLine(result);
+            Console.WriteLine("************************************");
+            return result;
         }        
+
+        // public object CreateIcon(object obj)
+        // {
+        //     return await JSBinder.JSRuntime.InvokeAsync<object>("L.createIcon", obj);
+        // }
     }
 }
