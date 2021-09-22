@@ -1,4 +1,5 @@
 ﻿using Microsoft.JSInterop;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
@@ -11,17 +12,19 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         /// <summary>
         /// The top left corner of the bounds.
         /// </summary>
+        [JsonPropertyName("min")]
         public Point Min { get; set; }
         /// <summary>
         /// The bottom right corner of the bounds.
         /// </summary>
+        [JsonPropertyName("max")]
         public Point Max { get; set; }
 
         /// <summary>
         /// Constructs a Bounds instance.
         /// </summary>
         /// <param name="min">The top left corner of the bounds.</param>
-        /// <param name="max">The bottom right corner of the bounds.</param>
+        /// <param name="max">The bottom right corner of the bounds.</param>        
         public Bounds(Point min, Point max)
         {
             Min = min;

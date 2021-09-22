@@ -1,4 +1,5 @@
 ﻿using Microsoft.JSInterop;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
@@ -11,14 +12,17 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         /// <summary>
         /// The x coordinate in pixels.
         /// </summary>
+        [JsonPropertyName("x")]
         public double X { get; set; }
         /// <summary>
         /// The y corrdinate in pixels.
         /// </summary>
+        [JsonPropertyName("y")]
         public double Y { get; set; }
         /// <summary>
         /// Flag indicating whether coordinate values should be rounded.
         /// </summary>
+        [JsonPropertyName("round")]
         public bool Round { get; set; }
 
         /// <summary>

@@ -62,8 +62,15 @@ namespace LeafletBlazorTestRig.Pages
         protected async void AddMarkerAtMapCenter()
         {
             var mapCentre = await PositionMap.GetCenter();
-            var marker = new Marker(mapCentre, new MarkerOptions
+            
+            var icon = new Icon(new IconOptions()
             {
+                IconUrl = "leaf-orange.png",
+                IconSize = new Point(64, 64)
+            });
+              
+            var marker = new Marker(mapCentre, new MarkerOptions
+            {                                
                 Keyboard = MarkerViewModel.Keyboard,
                 Title = MarkerViewModel.Title,
                 Alt = MarkerViewModel.Alt,
@@ -74,6 +81,7 @@ namespace LeafletBlazorTestRig.Pages
             });
 
             await marker.AddTo(PositionMap);
+            await icon.AddTo(marker);
         }
 
         public async ValueTask DisposeAsync()

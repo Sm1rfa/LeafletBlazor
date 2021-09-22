@@ -1,4 +1,5 @@
 ﻿using Microsoft.JSInterop;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
@@ -12,10 +13,12 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         /// <summary>
         /// Latitude in degrees.
         /// </summary>
+        [JsonPropertyName("lat")]
         public double Lat { get; set; }
         /// <summary>
         /// Longitude in degrees.
         /// </summary>
+        [JsonPropertyName("lng")]
         public double Lng { get; set; }
 
         /// <summary>
