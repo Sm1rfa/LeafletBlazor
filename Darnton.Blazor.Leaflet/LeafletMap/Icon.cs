@@ -20,7 +20,7 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         /// The <see cref="IconOptions"/> used to create the Icon.
         /// </summary>
         [JsonPropertyName("options")]
-        public IconOptions Options { get; }
+        public IconOptions Options { get; protected set; }
 
         /// <summary>
         /// Constructs an Icon.
@@ -47,7 +47,7 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
 
             return this;
         }
-
+        
         /// <inheritdoc/>
         protected override async Task<IJSObjectReference> CreateJsObjectRef()
         {
