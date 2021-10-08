@@ -38,7 +38,7 @@ namespace Blazor.Leaflet.OpenStreetMap
         protected abstract Task<IJSObjectReference> CreateJsObjectRef();
 
         /// <inheritdoc/>
-        public async ValueTask DisposeAsync()
+        public virtual async ValueTask DisposeAsync()
         {
             if (JSObjectReference != null)
                 await JSObjectReference.DisposeAsync();
@@ -55,6 +55,6 @@ namespace Blazor.Leaflet.OpenStreetMap
             {
                 throw new InvalidOperationException(nullBindingMessage);
             }
-        }
+        }        
     }
 }

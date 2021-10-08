@@ -4,7 +4,13 @@
 
         setView: function (map, center, zoom) {
             map.setView(center, zoom);
-        }
+        },
+
+        subscribeToEvent(map, dotNetReference, eventName, handlerName) {            
+            map.on(eventName, function(e) {                
+                dotNetReference.invokeMethodAsync(handlerName);
+            });
+        }   
 
     },
 

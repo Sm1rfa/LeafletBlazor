@@ -1,4 +1,5 @@
 ﻿using Microsoft.JSInterop;
+using System;
 using System.Threading.Tasks;
 
 namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
@@ -10,6 +11,14 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
     /// </summary>
     public class Map : InteropObject
     {
+        private bool subscribedToEvents = false;
+        private DotNetObjectReference<Map> objectReference;
+
+        /// <summary>
+        /// Fired when the center of the map stops changing (e.g. user stopped dragging the map).
+        /// </summary>
+        public event EventHandler OnMoveEnd;
+
         /// <summary>
         /// The ID of the HTML element the map will be rendered in.
         /// </summary>
@@ -27,7 +36,7 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         public Map(string elementId, MapOptions options)
         {
             ElementId = elementId;
-            Options = options;
+            Options = options;            
         }
 
         /// <inheritdoc/>
@@ -166,5 +175,43 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         }
 
         #endregion
+
+        /// <summary>
+        /// Subscribe to an event of the leaflet map
+        /// <param name="eventName">Name of the leaflet map event to subscribe to</param>
+        /// <param name="handlerName">Name of the dotnet method to be called when the event is raised</param>
+        /// </summary>
+        private async Task SubscribeToEvent(string eventName, string handlerName)
+        {
+            objectReference = objectReference ?? DotNetObjectReference.Create(this);
+            var module = await JSBinder.GetLeafletMapModule();
+            await module.InvokeVoidAsync("LeafletMap.Map.subscribeToEvent", JSObjectReference, objectReference, eventName, handlerName);            
+        }
+
+        /// <summary>
+        /// Subscribe to the map events. Unless this is called the map will not raise events.
+        /// </summary>
+        public async Task SubscribeToEvents()
+        {
+            if (!subscribedToEvents)
+            {
+                Console.WriteLine("Subscribing to events");
+                await SubscribeToEvent("moveend", nameof(InvokeOnMoveEnd));                     
+                subscribedToEvents = true;
+            }
+        }
+
+        [JSInvokable]
+        ///<summary>
+        /// This method is public for Javascript interop, do not invoke manally
+        ///</summary>
+        public void InvokeOnMoveEnd() => OnMoveEnd?.Invoke(this, new EventArgs());       
+
+
+        public override async ValueTask DisposeAsync()
+        {
+            await base.DisposeAsync();
+            objectReference?.Dispose();
+        }
     }
 }
