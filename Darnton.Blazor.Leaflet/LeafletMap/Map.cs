@@ -20,6 +20,52 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         public event EventHandler OnMoveEnd;
 
         /// <summary>
+        /// Fired when the user clicks (or taps) the map.
+        /// </summary>
+        public EventHandler<LeafletMouseEventArgs> OnClick;
+
+        /// <summary>
+        /// Fired when the user double-clicks (or double-taps) the map.
+        /// </summary>
+        public EventHandler<LeafletMouseEventArgs> OnDoubleClick;
+
+        /// <summary>
+        /// Fired when the user pushes the mouse button on the map.
+        /// </summary>
+        public EventHandler<LeafletMouseEventArgs> OnMouseDown;
+
+        /// <summary>
+        /// Fired when the user releases the mouse button on the map.
+        /// </summary>
+        public EventHandler<LeafletMouseEventArgs> OnMouseUp;
+
+        /// <summary>
+        /// Fired when the mouse enters the map.
+        /// </summary>
+        public EventHandler<LeafletMouseEventArgs> OnMouseOver;
+
+        /// <summary>
+        /// Fired when the mouse leaves the map.
+        /// </summary>
+        public EventHandler<LeafletMouseEventArgs> OnMouseOut;
+
+        /// <summary>
+        /// Fired while the mouse moves over the map.
+        /// </summary>
+        public EventHandler<LeafletMouseEventArgs> OnMouseMove;
+
+        /// <summary>
+        /// Fired when the user pushes the right mouse button on the map, prevents default browser context menu from showing if there are listeners on this event. Also fired on mobile when the user holds a single touch for a second (also called long press).
+        /// </summary>
+        public EventHandler<LeafletMouseEventArgs> OnContextMenu;
+
+        /// <summary>
+        /// Fired before mouse click on the map (sometimes useful when you want something to happen on click before any existing click handlers start running).
+        /// </summary>
+        public EventHandler<LeafletMouseEventArgs> OnPreClick;
+
+
+        /// <summary>
         /// The ID of the HTML element the map will be rendered in.
         /// </summary>
         public string ElementId { get; }
@@ -188,6 +234,13 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
             await module.InvokeVoidAsync("LeafletMap.Map.subscribeToEvent", JSObjectReference, objectReference, eventName, handlerName);            
         }
 
+        private async Task SubscribeToMouseEvent(string eventName, string handlerName)
+        {
+            objectReference = objectReference ?? DotNetObjectReference.Create(this);
+            var module = await JSBinder.GetLeafletMapModule();
+            await module.InvokeVoidAsync("LeafletMap.Map.subscribeToMouseEvent", JSObjectReference, objectReference, eventName, handlerName);            
+        }
+
         /// <summary>
         /// Subscribe to the map events. Unless this is called the map will not raise events.
         /// </summary>
@@ -196,18 +249,86 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
             if (!subscribedToEvents)
             {
                 Console.WriteLine("Subscribing to events");
-                await SubscribeToEvent("moveend", nameof(InvokeOnMoveEnd));                     
+                await SubscribeToEvent("moveend", nameof(InvokeOnMoveEnd));                    
+                await SubscribeToMouseEvent("click", nameof(InvokeOnClick)); 
+                await SubscribeToMouseEvent("dblclick", nameof(InvokeOnDoubleClick));
+                await SubscribeToMouseEvent("mousedown", nameof(InvokeOnMouseDown));
+                await SubscribeToMouseEvent("mouseup", nameof(InvokeOnMouseUp));
+                await SubscribeToMouseEvent("mouseover", nameof(InvokeOnMouseOver));
+                await SubscribeToMouseEvent("mouseout", nameof(InvokeOnMouseOut));
+                await SubscribeToMouseEvent("mousemove", nameof(InvokeOnMouseMove));
+                await SubscribeToMouseEvent("contextmenu", nameof(InvokeOnContextMenu));
+                
+                //This one causes a DOM Exception:
+                //await SubscribeToMouseEvent("preclick", nameof(InvokeOnPreClick));
+
                 subscribedToEvents = true;
             }
         }
 
-        [JSInvokable]
         ///<summary>
         /// This method is public for Javascript interop, do not invoke manally
         ///</summary>
+        [JSInvokable]
         public void InvokeOnMoveEnd() => OnMoveEnd?.Invoke(this, new EventArgs());       
 
+        ///<summary>
+        /// This method is public for Javascript interop, do not invoke manally
+        ///</summary>
+        [JSInvokable]
+        public void InvokeOnClick(LeafletMouseEventArgs args) => OnClick?.Invoke(this, args);
 
+        ///<summary>
+        /// This method is public for Javascript interop, do not invoke manally
+        ///</summary>
+        [JSInvokable]
+        public void InvokeOnDoubleClick(LeafletMouseEventArgs args) => OnDoubleClick?.Invoke(this, args);
+
+        ///<summary>
+        /// This method is public for Javascript interop, do not invoke manally
+        ///</summary>
+        [JSInvokable]
+        public void InvokeOnMouseDown(LeafletMouseEventArgs args) => OnMouseDown?.Invoke(this, args);
+
+        ///<summary>
+        /// This method is public for Javascript interop, do not invoke manally
+        ///</summary>
+        [JSInvokable]
+        public void InvokeOnMouseUp(LeafletMouseEventArgs args) => OnMouseUp?.Invoke(this, args);
+
+        ///<summary>
+        /// This method is public for Javascript interop, do not invoke manally
+        ///</summary>
+        [JSInvokable]
+        public void InvokeOnMouseOver(LeafletMouseEventArgs args) => OnMouseOver?.Invoke(this, args);
+
+        ///<summary>
+        /// This method is public for Javascript interop, do not invoke manally
+        ///</summary>
+        [JSInvokable]
+        public void InvokeOnMouseOut(LeafletMouseEventArgs args) => OnMouseOut?.Invoke(this, args);
+
+        ///<summary>
+        /// This method is public for Javascript interop, do not invoke manally
+        ///</summary>
+        [JSInvokable]
+        public void InvokeOnMouseMove(LeafletMouseEventArgs args) => OnMouseMove?.Invoke(this, args);
+
+        ///<summary>
+        /// This method is public for Javascript interop, do not invoke manally
+        ///</summary>
+        [JSInvokable]
+        public void InvokeOnContextMenu(LeafletMouseEventArgs args) => OnContextMenu?.Invoke(this, args);
+
+        ///<summary>
+        /// This method is public for Javascript interop, do not invoke manally
+        ///</summary>
+        [JSInvokable]
+        public void InvokeOnPreClick(LeafletMouseEventArgs args) => OnPreClick?.Invoke(this, args);
+
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public override async ValueTask DisposeAsync()
         {
             await base.DisposeAsync();

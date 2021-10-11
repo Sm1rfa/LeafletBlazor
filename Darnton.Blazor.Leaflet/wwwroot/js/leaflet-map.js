@@ -10,8 +10,23 @@
             map.on(eventName, function(e) {                
                 dotNetReference.invokeMethodAsync(handlerName);
             });
-        }   
+        },   
 
+        subscribeToMouseEvent(map, dotNetReference, eventName, handlerName) {            
+            map.on(eventName, function(e) {                
+                var args = {
+                    "type" : e.type.toString(),
+                    "latlng" : e.latlng,
+                    "layerPoint" : e.layerPoint,
+                    "containerPoint" : e.containerPoint,
+                    "originalEvent" : e.originalEvent,
+                    // "target" : e.target.toString(),
+                    // "sourceTarget" : e.sourceTarget,
+                    // "propagatedFrom" : e.propagatedFrom,
+                };                
+                dotNetReference.invokeMethodAsync(handlerName, args);
+            });
+        }
     },
 
     Layer: {
