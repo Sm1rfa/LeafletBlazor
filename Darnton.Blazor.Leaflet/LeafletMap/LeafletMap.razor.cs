@@ -23,6 +23,7 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         /// </summary>
         [Parameter] public TileLayer TileLayer { get; set; }
 
+ 
         /// <inheritdoc/>
         protected async override Task OnAfterRenderAsync(bool firstRender)
         {
@@ -30,6 +31,7 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
             {
                 await Map.BindJsObjectReference(new LeafletMapJSBinder(JSRuntime));
                 await TileLayer.AddTo(Map);
+                await Map.SubscribeToEvents();
             }
         }
     }

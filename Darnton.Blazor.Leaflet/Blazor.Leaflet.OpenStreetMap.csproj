@@ -20,6 +20,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <StaticWebAssetBasePath>_content/$(PackageId)</StaticWebAssetBasePath>
+  </PropertyGroup>
 
   <ItemGroup>
     <None Remove="LeafletBlazor.xml" />

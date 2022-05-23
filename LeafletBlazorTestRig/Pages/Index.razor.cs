@@ -38,9 +38,17 @@ namespace LeafletBlazorTestRig.Pages
             );
 
             MarkerViewModel = new MarkerViewModel();
-
+            PositionMap.SubscribeEvents = true;
+            PositionMap.OnClick += MapClicked;
         }
 
+        public LatLng ClickLocation { get; set; }
+        private void MapClicked(object sender, LeafletMouseEventArgs e)
+        {
+            Console.WriteLine("Click event at: " + e.LatLng.ToString());
+            ClickLocation = e.LatLng;
+            StateHasChanged();
+        }
         protected async void GetMapState()
         {
             var mapCentre = await PositionMap.GetCenter();
