@@ -12,7 +12,7 @@ namespace LeafletBlazorTestRig.Pages
         protected TileLayer OpenStreetMapsTileLayer;
         protected MapStateViewModel MapStateViewModel;
         protected MarkerViewModel MarkerViewModel;
-
+        private Marker _marker;
 
         public IndexBase() : base()
         {
@@ -41,12 +41,13 @@ namespace LeafletBlazorTestRig.Pages
             PositionMap.SubscribeEvents = true;
             PositionMap.OnClick += MapClicked;
         }
-
+        
         public LatLng ClickLocation { get; set; }
-        private void MapClicked(object sender, LeafletMouseEventArgs e)
+        private async void MapClicked(object sender, LeafletMouseEventArgs e)
         {
             Console.WriteLine("Click event at: " + e.LatLng.ToString());
             ClickLocation = e.LatLng;
+            await AddOrMoveClickMarker(e.LatLng);
             StateHasChanged();
         }
         protected async void GetMapState()
@@ -67,6 +68,27 @@ namespace LeafletBlazorTestRig.Pages
             await PositionMap.SetView(mapCentre, MapStateViewModel.Zoom);
         }
 
+        private async Task AddOrMoveClickMarker(LatLng latLng)
+        {
+            if (_marker is null)
+            {
+                _marker = new Marker(latLng, new MarkerOptions
+                {
+                    Keyboard = MarkerViewModel.Keyboard,
+                    Title = MarkerViewModel.Title,
+                    Alt = MarkerViewModel.Alt,
+                    ZIndexOffset = MarkerViewModel.ZIndexOffset,
+                    Opacity = MarkerViewModel.Opacity,
+                    RiseOnHover = MarkerViewModel.RiseOnHover,
+                    RiseOffset = MarkerViewModel.RiseOffset,
+                });
+                await _marker.AddTo(PositionMap);
+            }
+            else
+            {
+                await _marker.SetLatLng(latLng);
+            }
+        }
         protected async void AddMarkerAtMapCenter()
         {
             var mapCentre = await PositionMap.GetCenter();

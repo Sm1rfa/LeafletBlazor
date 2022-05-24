@@ -50,8 +50,12 @@
     },
 
     Marker: {
-        setIcon(icon, marker) {
+        setIcon (icon, marker) {
             marker.setIcon(icon);
+        },
+
+        setLatLng(latlng, marker) {
+            marker.setLatLng(latlng);
         }
     },
 
