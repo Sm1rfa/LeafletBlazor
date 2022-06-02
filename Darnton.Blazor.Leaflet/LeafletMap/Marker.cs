@@ -1,4 +1,5 @@
 ﻿using Microsoft.JSInterop;
+using System;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         /// <summary>
         /// The initial position of the marker.
         /// </summary>
-        [JsonIgnore] public LatLng LatLng { get; }
+        [JsonIgnore] public LatLng LatLng { get; private set; }
         /// <summary>
         /// The <see cref="MarkerOptions"/> used to create the marker.
         /// </summary>
@@ -28,6 +29,18 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         {
             LatLng = latlng;
             Options = options;
+        }
+
+        /// <summary>
+        /// Changes the marker position to the given point.
+        /// </summary>
+        /// <param name="latlng">Coordinates of the new position of the marker.</param>
+        public async Task SetLatLng(LatLng latlng)
+        {
+            GuardAgainstNullBinding("Cannot set marker position. No JavaScript binding has been set up.");
+            var module = await JSBinder.GetLeafletMapModule();
+            await module.InvokeVoidAsync("LeafletMap.Marker.setLatLng", latlng, JSObjectReference);
+            LatLng = latlng;
         }
 
         /// <inheritdoc/>

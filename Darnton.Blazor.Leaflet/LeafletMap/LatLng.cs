@@ -15,11 +15,15 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         /// </summary>
         [JsonPropertyName("lat")]
         public double Lat { get; set; }
+
+        
+        private double _lng; 
+
         /// <summary>
         /// Longitude in degrees.
         /// </summary>
         [JsonPropertyName("lng")]
-        public double Lng { get; set; }
+        public double Lng { get => _lng; set => _lng = value % 360.0; }
 
         /// <summary>
         /// Constructs a LatLng

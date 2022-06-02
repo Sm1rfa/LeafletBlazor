@@ -10,6 +10,14 @@
 <div class="my-3">
     <EditForm Model="MapStateViewModel" OnValidSubmit="SetMapState">
         <h3>Map State</h3>
+        @if (!(ClickLocation is null))
+        {
+            <p>You clicked at : @(ClickLocation.ToString())</p>
+        }
+        else
+        {
+            <p>Click on the map to find out the coordinates (lat, lon).</p>
+         }
         <button class="btn btn-primary my-3" @onclick="GetMapState">Get Map State</button>
         <button type="submit" class="btn btn-primary my-3">Set Map State</button>
         <div class="form-row">
