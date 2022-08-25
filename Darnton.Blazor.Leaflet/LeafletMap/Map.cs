@@ -90,7 +90,7 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         {
             return await JSBinder.JSRuntime.InvokeAsync<IJSObjectReference>("L.map", ElementId, Options);
         }
-
+        
         #region Get map state
         /// <summary>
         /// Gets the point at the centre of the map view.
@@ -242,11 +242,20 @@ namespace Blazor.Leaflet.OpenStreetMap.LeafletMap
         }
 
         /// <summary>
+        /// Subscribe to the map events. Unless this is set true the map will not raise events.
+        /// </summary>
+        public bool SubscribeEvents { get; set; }
+
+        /// <summary>
         /// Subscribe to the map events. Unless this is called the map will not raise events.
         /// </summary>
-        public async Task SubscribeToEvents()
+        internal async Task SubscribeToEvents()
         {
-            if (!subscribedToEvents)
+            if (JSBinder is null)
+            {
+                throw new InvalidOperationException("JSBinder has not been bind yet.");
+            }
+            if (SubscribeEvents && !subscribedToEvents)
             {
                 Console.WriteLine("Subscribing to events");
                 await SubscribeToEvent("moveend", nameof(InvokeOnMoveEnd));                    
